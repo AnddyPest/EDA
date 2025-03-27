@@ -1,12 +1,14 @@
 
 package trabajo_practico_2.services;
 
+import java.util.List;
+import trabajo_practico_2.model.Jjoo;
+
 public interface IOrdenamientos {
     
-    //nuevo pais
-    public void addPaises(String pais, int oro, int plata, int bronce);
-    //ordenar 
-    public void orderBy();
+    public void orderByInsertion(List<Jjoo> listado);
+    public void orderByShell(List<Jjoo> listado);
+    
    
     
 }
