@@ -17,6 +17,11 @@ public class Jjoo {
         this.bronce = bronce;
     }
 
+    public Jjoo() {
+    }
+    
+    
+
     public String getPais() {
         return pais;
     }
