@@ -1,5 +1,7 @@
 package trabajo_practico_2.model;
 
+import java.util.Objects;
+
 public class Jjoo implements Comparable<Jjoo> {
 
     private String pais;
@@ -84,4 +86,18 @@ public class Jjoo implements Comparable<Jjoo> {
         }
 
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Jjoo jjoo = (Jjoo) obj;
+        return Objects.equals(this.pais, jjoo.pais);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.pais);
+    }
+
 }

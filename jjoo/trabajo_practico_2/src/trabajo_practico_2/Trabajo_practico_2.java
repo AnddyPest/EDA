@@ -44,29 +44,50 @@ public class Trabajo_practico_2 {
                         System.out.println("Ingrese cantidad de medallas de bronce");
                         int medallasDeBronce = scanner.nextInt();
 
+                        scanner.nextLine(); // Limpiar scanner
+
                         Jjoo jjoo = new Jjoo(nombre, medallasDeOro, medallasDePlata, medallasDeBronce);
-                        naciones.add(jjoo);
+
+                        if(!naciones.contains(jjoo))
+                        {
+                            naciones.add(jjoo);
+                        }else {
+                            System.out.println("Este pais ya esta en la lista inserte otro");
+                        }
+
                         System.out.println("Desea añadir otro pais y/n: ");
                         repetir = scanner.nextLine();
 
                     }
                     break;
                 case 2:
-                    String aceptar = "y";
+                    String aceptar = "n";
                     System.out.println("¿Desea ordenar la lista?");
+                    aceptar = scanner.nextLine();
+
                     if (aceptar.equalsIgnoreCase("y")) {
                         System.out.println("¿Que metodo de ordenamiento desea emplear?");
                         System.out.println("1 - Shell Sort // 2 - Insertion Sort");
                         int metodo = scanner.nextInt();
                         switch (metodo) {
                             case 1:
+
+                                long inicio = System.currentTimeMillis();
                                 ord.orderByShell(naciones);
-                                System.out.println("Metodo Shell Sort aplicado");
+                                long fin = System.currentTimeMillis();
+                                long tiempoFinal = fin - inicio;
+
+                                System.out.println("Metodo Shell Sort aplicado, demoro: " + tiempoFinal + " milisegundos");
 
                                 break;
                             case 2:
+                                long inicio2 = System.currentTimeMillis();
                                 ord.orderByInsertion(naciones);
-                                System.out.println("Metodo Insertion Sort aplicado");
+                                long fin2 = System.currentTimeMillis();
+
+                                long tiempoFinal2 = fin2 - inicio2;
+
+                                System.out.println("Metodo Insertion Sort aplicado, demoro: "+ tiempoFinal2 + " milisegundos");
 
                                 break;
 
@@ -82,23 +103,18 @@ public class Trabajo_practico_2 {
                     }
                     break;
                 case 4:
-                    for(Jjoo n : naciones) {
-                       int rank = (naciones.indexOf(n))+1;
-                       n.setRanking(rank);
-                        System.out.println("Ranking: "+n.getRanking()+", Pais: "+n.getPais());
+                    for (Jjoo n : naciones) {
+                        int rank = (naciones.indexOf(n)) + 1;
+                        n.setRanking(rank);
+                        System.out.println("Ranking: " + n.getRanking() + ", Pais: " + n.getPais());
                     }
-                    
-                break;
-                
+
+                    break;
+
                 default:
                     System.out.println("Elija una opcion valida (DE 0 a 4)");
             }
 
         }
-
     }
-    //ME ESCUHAS?
-    //Entro y salgo... bah al reves
-    //Me figura el mic abierto y transmitiendo che
-
 }
