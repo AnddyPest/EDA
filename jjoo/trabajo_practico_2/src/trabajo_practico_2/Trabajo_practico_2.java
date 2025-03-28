@@ -55,14 +55,14 @@ public class Trabajo_practico_2 {
                             System.out.println("Este pais ya esta en la lista inserte otro");
                         }
 
-                        System.out.println("Desea añadir otro pais y/n: ");
+                        System.out.println("Desea añadir otro pais. (y/n): ");
                         repetir = scanner.nextLine();
 
                     }
                     break;
                 case 2:
                     String aceptar = "n";
-                    System.out.println("¿Desea ordenar la lista?");
+                    System.out.println("¿Desea ordenar la lista? (y/n)");
                     aceptar = scanner.nextLine();
 
                     if (aceptar.equalsIgnoreCase("y")) {

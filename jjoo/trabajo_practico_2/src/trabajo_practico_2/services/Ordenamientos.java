@@ -15,7 +15,7 @@ public class Ordenamientos implements IOrdenamientos{
                 Jjoo paistemp = listado.get(i);
                 int j;
 
-                for (j = i; j >= s && listado.get(j - s).compareTo(paistemp)<0; j -= s) {
+                for (j = i; j >= s && listado.get(j - s).compareTo(paistemp)>0; j -= s) {
                     listado.set(j, listado.get(j - s));
                 }
                 listado.set(j, paistemp);
@@ -28,7 +28,7 @@ public class Ordenamientos implements IOrdenamientos{
         for (int i = 1; i < listado.size(); i++) {
             Jjoo aux = listado.get(i);
             int j = i;
-            while (j > 0 && listado.get(j-1).compareTo(aux) < 0) {
+            while (j > 0 && listado.get(j-1).compareTo(aux) > 0) {
                 listado.set(j, listado.get(j-1));
                 j = j - 1;
             }
