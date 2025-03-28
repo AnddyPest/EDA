@@ -63,15 +63,15 @@ public class Jjoo implements Comparable<Jjoo> {
     @Override
     public int compareTo(Jjoo o) {
         if (this.oro != o.oro) {
-            return Integer.compare(o.oro, this.oro); // Ordenamos por oro (descendente)
+            return Integer.compare(o.oro, this.oro);
         }
         if (this.plata != o.plata) {
-            return Integer.compare(o.plata, this.plata); // Si oro es igual, por plata
+            return Integer.compare(o.plata, this.plata);
         }
         if (this.bronce != o.bronce) {
-            return Integer.compare(o.bronce, this.bronce); // Si oro y plata son iguales, por bronce
+            return Integer.compare(o.bronce, this.bronce);
         }
-        return this.pais.compareTo(o.pais); // Si todo es igual, ordenamos por país alfabéticamente
+        return this.pais.compareTo(o.pais);
     }
 
     @Override
