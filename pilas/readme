@@ -37,10 +37,3 @@ temp siempre almacena el valor que estaba en el tope de la pila al inicio de la 
 Como la pila se reconstruye en cada iteración, el nuevo tope cambia después de cada ciclo.
 
 Esto hace que temp tome un nuevo valor en cada iteración, asegurando que los elementos se vayan colocando en orden inverso.
-
-Ejemplo con pila [4, 3, 2, 1]
-Iteración	temp extraído	Pila auxiliar (temporal)	Nueva pila
-1	4	[3, 2, 1]	[1, 2, 3, 4]
-2	3	[2, 1]	[1, 2, 4, 3]
-3	2	[1]	[1, 4, 3, 2]
-4	1	[]	[4, 3, 2, 1]
