@@ -1,0 +1,46 @@
+Algoritmo para invertir una pila de forma eficiente
+Descripción
+Este algoritmo invierte una pila utilizando solo una pila auxiliar y una variable temporal.
+
+Pasos del algoritmo
+Bucle principal:
+
+Se ejecuta hasta que todos los elementos de la pila hayan sido movidos a su posición invertida.
+
+Solo recorre las posiciones ocupadas (n = tope + 1).
+
+Extracción del temp (tope actual de la pila):
+
+Se extrae (pop()) el elemento en el tope y se almacena en temp.
+
+Este elemento será movido a su nueva posición en la pila.
+
+Mover elementos a la pila auxiliar:
+
+Se extraen (pop()) n - i - 1 elementos y se almacenan en la pila auxiliar.
+
+Esto crea espacio en la pila original para insertar temp en su nueva posición.
+
+Insertar temp en su nueva posición:
+
+temp se inserta (push()) en la pila original, ahora en la posición deseada.
+
+Devolver los elementos de la auxiliar a la pila original:
+
+Los elementos extraídos se vuelven a insertar (push()) en la pila original en el mismo orden en que fueron extraídos.
+
+Repetir el proceso hasta invertir toda la pila.
+
+¿Por qué temp cambia en cada iteración?
+temp siempre almacena el valor que estaba en el tope de la pila al inicio de la iteración.
+
+Como la pila se reconstruye en cada iteración, el nuevo tope cambia después de cada ciclo.
+
+Esto hace que temp tome un nuevo valor en cada iteración, asegurando que los elementos se vayan colocando en orden inverso.
+
+Ejemplo con pila [4, 3, 2, 1]
+Iteración	temp extraído	Pila auxiliar (temporal)	Nueva pila
+1	4	[3, 2, 1]	[1, 2, 3, 4]
+2	3	[2, 1]	[1, 2, 4, 3]
+3	2	[1]	[1, 4, 3, 2]
+4	1	[]	[4, 3, 2, 1]

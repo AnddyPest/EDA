@@ -8,7 +8,4 @@ public interface IOrdenamientos {
     
     public void orderByInsertion(List<Jjoo> listado);
     public void orderByShell(List<Jjoo> listado);
-    
-   
-    
 }
