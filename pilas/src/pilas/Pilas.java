@@ -1,11 +1,14 @@
 package pilas;
 
+import static pilas.Pila.unidosMesclados;
+
 public class Pilas {
 
     public static void main(String[] args) {
+        
         Pila p1 = new Pila(4);
         Pila p2 = new Pila(4);
-        Pila p3 = new Pila(8);
+        
 
         p1.push(6);
         p1.push(5);
@@ -20,8 +23,17 @@ public class Pilas {
         //p1.mostrarPila();
 
         ///p1.invertirEficiente()
-        Pila p4 = p3.unidosMesclados(p1,p2);
-        p4.mostrarPila();
+        ///
+        p1.mostrarPila();
+        p2.mostrarPila();
+        Pila mezclada = unidosMesclados(p1,p2);
+        System.out.println("Pila mezclada");
+        mezclada.mostrarPila();
+        System.out.println("Pila 1");
+        p1.mostrarPila();
+        System.out.println("Pila 2");
+        p2.mostrarPila();   
+        
 
     }
 

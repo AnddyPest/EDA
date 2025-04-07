@@ -54,32 +54,28 @@ public class Pila {
     public void mostrarPila() {
         Pila paux = new Pila(tam);
         while (!pilaVacia()) {
-            System.out.print(verTope()+" ");
+            System.out.print(verTope() + " ");
             paux.push(this.pop());
         }
         System.out.println("");
-        while (!paux.pilaVacia()) {            
+        while (!paux.pilaVacia()) {
             push(paux.pop());
         }
     }
 
-    public void invertirSimple()
-    {
+    public void invertirSimple() {
         Pila aux1 = new Pila(tam);
         Pila aux2 = new Pila(tam);
 
-        while (!this.pilaVacia())
-        {
+        while (!this.pilaVacia()) {
             aux1.push(this.pop());
         }
 
-        while (!aux1.pilaVacia())
-        {
+        while (!aux1.pilaVacia()) {
             aux2.push(aux1.pop());
         }
 
-        while (!aux2.pilaVacia())
-        {
+        while (!aux2.pilaVacia()) {
             this.push(aux2.pop());
         }
     }
@@ -108,83 +104,67 @@ public class Pila {
         }
     }
 
-    public void pushOrdenado(int x)
-    {
+    public void pushOrdenado(int x) {
         Pila aux = new Pila(tam);
 
-        if(x < this.verTope() && !this.pilaVacia())
-        {
-            while(x < this.verTope())
-            {
+        if (x < this.verTope() && !this.pilaVacia()) {
+            while (x < this.verTope()) {
                 aux.push(this.pop());
             }
 
             this.push(x);
 
-            while (!aux.pilaVacia())
-            {
+            while (!aux.pilaVacia()) {
                 this.push(aux.pop());
             }
-        }else if(this.pilaVacia() || x > this.verTope())
-        {
+        } else if (this.pilaVacia() || x > this.verTope()) {
             this.push(x);
         }
     }
 
-
-    public Pila unidosMesclados(Pila pila1, Pila pila2)
-    {
+    public static Pila unidosMesclados(Pila pila1, Pila pila2) {
         Pila aux = new Pila((pila1.tam + pila2.tam));
 
-
-        while(!pila1.pilaVacia() && !pila2.pilaVacia())
-        {
-            if(pila1.verTope() >= pila2.verTope())
-            {
+        while (!pila1.pilaVacia() && !pila2.pilaVacia()) {
+            if (pila1.verTope() <= pila2.verTope()) {
                 aux.push(pila1.pop());
-            }
-
-            if(pila1.verTope() <= pila2.verTope())
-            {
+            } else {
                 aux.push(pila2.pop());
             }
         }
-
-        while (!pila2.pilaLlena())
-        {
-            pila2.push(aux.pop());
-
-            if(pila2.pilaLlena())
-            {
-                while(!pila1.pilaLlena())
-                {
-                    pila1.push(pila2.pop());
-                }
-            }
-        }
-
-        while(!pila2.pilaLlena())
-        {
-            pila2.push(aux.pop());
-
-            if(pila2.pilaLlena())
-            {
-                while (!pila1.pilaVacia())
-                {
-                    aux.push(pila1.pop());
-                }
-            }else if(pila1.pilaVacia())
-            {
-                while (!pila2.pilaVacia())
-                {
-                    pila1.push(pila2.pop());
-                }
-            }
-        }
-
-        while (!pila1.pilaVacia())
-        {
+        //Si queda algo en alguna pila y la otra esta vacia lo manda a la pila aux
+        while (!pila1.pilaVacia()) {
             aux.push(pila1.pop());
+        }
+
+        while (!pila2.pilaVacia()) {
+            aux.push(pila2.pop());
+        }
+        //************************************************************************
+        //Preparamos los datos que habian quedado en el tope de aux dandolos vuelta usando p1 y
+        //mandamos el resto de la pila aux a p2
+
+        do {
+            pila1.push(aux.pop());
+            if (pila1.pilaLlena()) {
+                while (!pila2.pilaLlena()) {
+                    pila2.push(pila1.pop());
+                }
+            }
+        } while (!pila1.pilaLlena());
+        
+        //Mandamos la pila que estsa lista para stackear a la pila aux
+        while(!pila2.pilaVacia()){
+            aux.push(pila2.pop());
+        }
+        //pasamos pila 1 a pila 2 para darlo vuelta y lo metemos en pila aux
+        while(!pila1.pilaVacia()) {
+            pila2.push(pila1.pop());
+            if(pila2.pilaLlena()){
+                while(!pila2.pilaVacia()){
+                    aux.push(pila2.pop());
+                }
+            }
         }
 
         return aux;
