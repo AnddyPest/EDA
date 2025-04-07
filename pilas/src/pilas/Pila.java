@@ -130,4 +130,63 @@ public class Pila {
             this.push(x);
         }
     }
+
+
+    public Pila unidosMesclados(Pila pila1, Pila pila2)
+    {
+        Pila aux = new Pila((pila1.tam + pila2.tam));
+
+
+        while(!pila1.pilaVacia() && !pila2.pilaVacia())
+        {
+            if(pila1.verTope() >= pila2.verTope())
+            {
+                aux.push(pila1.pop());
+            }
+
+            if(pila1.verTope() <= pila2.verTope())
+            {
+                aux.push(pila2.pop());
+            }
+        }
+
+        while (!pila2.pilaLlena())
+        {
+            pila2.push(aux.pop());
+
+            if(pila2.pilaLlena())
+            {
+                while(!pila1.pilaLlena())
+                {
+                    pila1.push(pila2.pop());
+                }
+            }
+        }
+
+        while(!pila2.pilaLlena())
+        {
+            pila2.push(aux.pop());
+
+            if(pila2.pilaLlena())
+            {
+                while (!pila1.pilaVacia())
+                {
+                    aux.push(pila1.pop());
+                }
+            }else if(pila1.pilaVacia())
+            {
+                while (!pila2.pilaVacia())
+                {
+                    pila1.push(pila2.pop());
+                }
+            }
+        }
+
+        while (!pila1.pilaVacia())
+        {
+            aux.push(pila1.pop());
+        }
+
+        return aux;
+    }
 }
