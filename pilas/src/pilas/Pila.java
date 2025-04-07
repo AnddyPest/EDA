@@ -108,4 +108,26 @@ public class Pila {
         }
     }
 
+    public void pushOrdenado(int x)
+    {
+        Pila aux = new Pila(tam);
+
+        if(x < this.verTope() && !this.pilaVacia())
+        {
+            while(x < this.verTope())
+            {
+                aux.push(this.pop());
+            }
+
+            this.push(x);
+
+            while (!aux.pilaVacia())
+            {
+                this.push(aux.pop());
+            }
+        }else if(this.pilaVacia() || x > this.verTope())
+        {
+            this.push(x);
+        }
+    }
 }
