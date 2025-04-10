@@ -13,9 +13,15 @@ public class Tp41Filas {
         Queue fila = new LinkedList<>(); 
         fila.add(5);
         fila.add(6);
+       
+        fila.add(6);
         fila.add(7);
         fila.add(8);
+        fila.add(8);
+        fila.add(8);
         fila.add(15);
+        fila.add(15);
+        fila.add(12);
         
 //        System.out.println("Antes");
 //        mostrarFila(fila);
@@ -24,6 +30,9 @@ public class Tp41Filas {
 //
 //        System.out.println(buscarX(fila, 5));
 //        mostrarFila(fila);
+//        ParesEImpares(fila);
+//        UnirFilasAYBEnC();
+        eliminarRepetidos(fila);
     }
     public static void InvertirC(Queue filaAinvertir){
         
@@ -58,7 +67,7 @@ public class Tp41Filas {
         int contador= 0;
         
         while(!filaAMostrar.isEmpty()){
-            System.out.print("Posicion: " +contador + " Elemento: " + filaAMostrar.peek()+ " || ");
+            System.out.print("Posicion: " +contador + " Elemento: " + filaAMostrar.peek()+ "\n || ");
             filaAuxiliar.add(filaAMostrar.poll());
             contador++;
         }
@@ -90,6 +99,74 @@ public class Tp41Filas {
         mostrarFila(filaEnDondeBuscar);
         return resultado;
         
+    }
+    public static void ParesEImpares(Queue<Integer> filaADividir){
+        Queue<Integer> filaDePares = new LinkedList<>();
+        Queue<Integer> filasImpares = new LinkedList<>();
+        
+        while(!filaADividir.isEmpty()){
+            if(filaADividir.peek() % 2 == 0){
+                filaDePares.add(filaADividir.poll());
+            }else{
+                filasImpares.add(filaADividir.poll());
+            }
+        }
+        System.out.println("Fila de pares");
+        mostrarFila(filaDePares);
+        System.out.println("Fila de Impares");
+        mostrarFila(filasImpares);
+    }
+    
+    public static void UnirFilasAYBEnC(){
+        
+        Queue<Integer> filaA = new LinkedList<>();
+        Queue<Integer> filaB = new LinkedList<>();
+        Queue<Integer> filaC = new LinkedList<>();
+
+        filaB.add(9);
+        filaB.add(8);
+        filaB.add(7);
+        filaB.add(6);
+        filaA.add(8);
+        filaA.add(7);
+        filaA.add(6);
+        filaA.add(4);
+        filaA.add(2);
+        
+        while(!filaA.isEmpty() && !filaB.isEmpty()){
+            if( filaA.peek() >= filaB.peek() ){
+                filaC.add(filaA.poll());
+            }else{
+                filaC.add(filaB.poll());
+            }       
+        }
+        while(!filaA.isEmpty()){
+            filaC.add(filaA.poll());
+        }
+        while(!filaB.isEmpty()){
+            filaC.add(filaB.poll());
+        }
+        mostrarFila(filaC);
+    }
+    
+    public static void eliminarRepetidos(Queue<Integer> listaAEliminarRepetidos){
+        
+        Queue<Integer> listaFiltrada = new LinkedList<>();
+        
+        while(!listaAEliminarRepetidos.isEmpty()){
+            int valorObservado = listaAEliminarRepetidos.poll();
+            boolean validado = true;
+            while(validado){
+                if( !listaAEliminarRepetidos.isEmpty() && valorObservado == listaAEliminarRepetidos.peek()){
+                    listaAEliminarRepetidos.poll();
+                }else{
+                    listaFiltrada.add(valorObservado);
+                    validado = false;
+                }    
+            }
+            
+        }
+        mostrarFila(listaFiltrada);
     }
     
 }
