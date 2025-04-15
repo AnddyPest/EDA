@@ -8,4 +8,7 @@ public class Almacen {
     
     Queue<Productos> FilaDeEspera = new LinkedList();
     
+    
+    
+    
 }
