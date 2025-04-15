@@ -6,7 +6,11 @@ public class Productos {
     
     private String identificador;
     private String tipo;
-
+    
+    Productos(){
+        
+    }
+    
     public Productos(String identificador, String tipo) {
         this.identificador = identificador;
         this.tipo = tipo;

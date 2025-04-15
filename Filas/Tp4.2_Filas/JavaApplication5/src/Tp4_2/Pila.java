@@ -2,17 +2,17 @@ package Tp4_2;
 
 public class Pila {
 
-    private int[] datos;
+    private Productos[] datos;
     private int tope;
     private int tam;
 
     public Pila(int i) {
         this.tam = i;
-        this.datos = new int[tam];
+        this.datos = new Productos[tam];
         this.tope = -1;
     }
 
-    public boolean push(int ingreso) {
+    public boolean push(Productos ingreso) {
         if (!pilaLlena()) {
             tope++;
             datos[tope] = ingreso;
@@ -22,13 +22,14 @@ public class Pila {
         }
     }
 
-    public int pop() {
+    public Productos pop() {
+        Productos productoARetornar = new Productos();
         if (!pilaVacia()) {
             tope--;
-            return datos[tope + 1];
-        } else {
-            return -1;
-        }
+            productoARetornar = datos[tope + 1];
+            
+        } 
+        return productoARetornar;
     }
 
     public boolean pilaVacia() {
@@ -39,11 +40,11 @@ public class Pila {
         return this.tam - 1 == this.tope;
     }
 
-    public int verTope() {
-        if (!pilaVacia()) {
+    public Productos verTope() {
+        if (!pilaVacia() ) {
             return datos[tope];
-        } else {
-            return -1;
+        } else{
+            return new Productos();
         }
     }
 
