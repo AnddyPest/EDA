@@ -1,0 +1,111 @@
+<html>
+<head>
+<title>Pila.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #bcbec4;}
+.s1 { color: #cf8e6d;}
+.s2 { color: #bcbec4;}
+.s3 { color: #2aacb8;}
+.s4 { color: #7a7e85;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Pila.java</font>
+</center></td></tr></table>
+<pre>
+
+    <span class="s1">public void </span><span class="s0">invertirEficiente</span><span class="s2">() {</span>
+        <span class="s1">int </span><span class="s0">tamañoDePila </span><span class="s2">= </span><span class="s0">tope </span><span class="s2">+ </span><span class="s3">1</span><span class="s2">;</span>
+        <span class="s0">Pila aux </span><span class="s2">= </span><span class="s1">new </span><span class="s0">Pila</span><span class="s2">(</span><span class="s0">tam</span><span class="s2">);</span>
+
+        <span class="s4">// Repetimos el proceso tamañoDePila veces.</span>
+        <span class="s1">for </span><span class="s2">(</span><span class="s1">int </span><span class="s0">posicion </span><span class="s2">= </span><span class="s3">0</span><span class="s2">; </span><span class="s0">posicion </span><span class="s2">&lt; </span><span class="s0">tamañoDePila</span><span class="s2">; </span><span class="s0">posicion</span><span class="s2">++) {</span>
+            <span class="s4">// Extraemos el elemento tope y lo guardamos en una variable temporal.</span>
+            <span class="s1">int </span><span class="s0">temp </span><span class="s2">= </span><span class="s1">this</span><span class="s2">.</span><span class="s0">pop</span><span class="s2">();</span>
+
+            <span class="s4">// Movemos (tamañoDePila - posicion - 1) elementos de la pila original a la auxiliar.</span>
+            <span class="s4">// Esto deja el lugar para insertar 'temp' en la &quot;base&quot; de la parte ya procesada.</span>
+            <span class="s1">for </span><span class="s2">(</span><span class="s1">int </span><span class="s0">cantidadDePosicionesAMoverse </span><span class="s2">= </span><span class="s3">0</span><span class="s2">; </span><span class="s0">cantidadDePosicionesAMoverse </span><span class="s2">&lt; </span><span class="s0">tamañoDePila </span><span class="s2">- </span><span class="s0">posicion </span><span class="s2">- </span><span class="s3">1</span><span class="s2">; </span><span class="s0">cantidadDePosicionesAMoverse</span><span class="s2">++) {</span>
+                <span class="s0">aux</span><span class="s2">.</span><span class="s0">push</span><span class="s2">(</span><span class="s1">this</span><span class="s2">.</span><span class="s0">pop</span><span class="s2">());</span>
+            <span class="s2">}</span>
+
+            <span class="s4">// Insertamos el elemento temporal en la pila original.</span>
+            <span class="s1">this</span><span class="s2">.</span><span class="s0">push</span><span class="s2">(</span><span class="s0">temp</span><span class="s2">);</span>
+
+            <span class="s1">while </span><span class="s2">(!</span><span class="s0">aux</span><span class="s2">.</span><span class="s0">pilaVacia</span><span class="s2">()) {</span>
+                <span class="s1">this</span><span class="s2">.</span><span class="s0">push</span><span class="s2">(</span><span class="s0">aux</span><span class="s2">.</span><span class="s0">pop</span><span class="s2">());</span>
+            <span class="s2">}</span>
+        <span class="s2">}</span>
+    <span class="s2">}</span>
+
+    <span class="s1">public void </span><span class="s0">pushOrdenado</span><span class="s2">(</span><span class="s1">int </span><span class="s0">x</span><span class="s2">) {</span>
+        <span class="s0">Pila aux </span><span class="s2">= </span><span class="s1">new </span><span class="s0">Pila</span><span class="s2">(</span><span class="s0">tam</span><span class="s2">);</span>
+
+        <span class="s1">if </span><span class="s2">(</span><span class="s0">x </span><span class="s2">&lt; </span><span class="s1">this</span><span class="s2">.</span><span class="s0">verTope</span><span class="s2">() &amp;&amp; !</span><span class="s1">this</span><span class="s2">.</span><span class="s0">pilaVacia</span><span class="s2">()) {</span>
+            <span class="s1">while </span><span class="s2">(</span><span class="s0">x </span><span class="s2">&lt; </span><span class="s1">this</span><span class="s2">.</span><span class="s0">verTope</span><span class="s2">()) {</span>
+                <span class="s0">aux</span><span class="s2">.</span><span class="s0">push</span><span class="s2">(</span><span class="s1">this</span><span class="s2">.</span><span class="s0">pop</span><span class="s2">());</span>
+            <span class="s2">}</span>
+
+            <span class="s1">this</span><span class="s2">.</span><span class="s0">push</span><span class="s2">(</span><span class="s0">x</span><span class="s2">);</span>
+
+            <span class="s1">while </span><span class="s2">(!</span><span class="s0">aux</span><span class="s2">.</span><span class="s0">pilaVacia</span><span class="s2">()) {</span>
+                <span class="s1">this</span><span class="s2">.</span><span class="s0">push</span><span class="s2">(</span><span class="s0">aux</span><span class="s2">.</span><span class="s0">pop</span><span class="s2">());</span>
+            <span class="s2">}</span>
+        <span class="s2">} </span><span class="s1">else if </span><span class="s2">(</span><span class="s1">this</span><span class="s2">.</span><span class="s0">pilaVacia</span><span class="s2">() || </span><span class="s0">x </span><span class="s2">&gt; </span><span class="s1">this</span><span class="s2">.</span><span class="s0">verTope</span><span class="s2">()) {</span>
+            <span class="s1">this</span><span class="s2">.</span><span class="s0">push</span><span class="s2">(</span><span class="s0">x</span><span class="s2">);</span>
+        <span class="s2">}</span>
+    <span class="s2">}</span>
+
+    <span class="s1">public static </span><span class="s0">Pila unidosMesclados</span><span class="s2">(</span><span class="s0">Pila pila1</span><span class="s2">, </span><span class="s0">Pila pila2</span><span class="s2">) {</span>
+        <span class="s0">Pila aux </span><span class="s2">= </span><span class="s1">new </span><span class="s0">Pila</span><span class="s2">((</span><span class="s0">pila1</span><span class="s2">.</span><span class="s0">tam </span><span class="s2">+ </span><span class="s0">pila2</span><span class="s2">.</span><span class="s0">tam</span><span class="s2">));</span>
+
+        <span class="s1">while </span><span class="s2">(!</span><span class="s0">pila1</span><span class="s2">.</span><span class="s0">pilaVacia</span><span class="s2">() &amp;&amp; !</span><span class="s0">pila2</span><span class="s2">.</span><span class="s0">pilaVacia</span><span class="s2">()) {</span>
+            <span class="s1">if </span><span class="s2">(</span><span class="s0">pila1</span><span class="s2">.</span><span class="s0">verTope</span><span class="s2">() &lt;= </span><span class="s0">pila2</span><span class="s2">.</span><span class="s0">verTope</span><span class="s2">()) {</span>
+                <span class="s0">aux</span><span class="s2">.</span><span class="s0">push</span><span class="s2">(</span><span class="s0">pila1</span><span class="s2">.</span><span class="s0">pop</span><span class="s2">());</span>
+            <span class="s2">} </span><span class="s1">else </span><span class="s2">{</span>
+                <span class="s0">aux</span><span class="s2">.</span><span class="s0">push</span><span class="s2">(</span><span class="s0">pila2</span><span class="s2">.</span><span class="s0">pop</span><span class="s2">());</span>
+            <span class="s2">}</span>
+        <span class="s2">}</span>
+        <span class="s4">//Si queda algo en alguna pila y la otra esta vacia lo manda a la pila aux</span>
+        <span class="s1">while </span><span class="s2">(!</span><span class="s0">pila1</span><span class="s2">.</span><span class="s0">pilaVacia</span><span class="s2">()) {</span>
+            <span class="s0">aux</span><span class="s2">.</span><span class="s0">push</span><span class="s2">(</span><span class="s0">pila1</span><span class="s2">.</span><span class="s0">pop</span><span class="s2">());</span>
+        <span class="s2">}</span>
+
+        <span class="s1">while </span><span class="s2">(!</span><span class="s0">pila2</span><span class="s2">.</span><span class="s0">pilaVacia</span><span class="s2">()) {</span>
+            <span class="s0">aux</span><span class="s2">.</span><span class="s0">push</span><span class="s2">(</span><span class="s0">pila2</span><span class="s2">.</span><span class="s0">pop</span><span class="s2">());</span>
+        <span class="s2">}</span>
+        <span class="s4">//************************************************************************</span>
+        <span class="s4">//Preparamos los datos que habian quedado en el tope de aux dandolos vuelta usando p1 y</span>
+        <span class="s4">//mandamos el resto de la pila aux a p2</span>
+
+        <span class="s1">do </span><span class="s2">{</span>
+            <span class="s0">pila1</span><span class="s2">.</span><span class="s0">push</span><span class="s2">(</span><span class="s0">aux</span><span class="s2">.</span><span class="s0">pop</span><span class="s2">());</span>
+            <span class="s1">if </span><span class="s2">(</span><span class="s0">pila1</span><span class="s2">.</span><span class="s0">pilaLlena</span><span class="s2">()) {</span>
+                <span class="s1">while </span><span class="s2">(!</span><span class="s0">pila2</span><span class="s2">.</span><span class="s0">pilaLlena</span><span class="s2">()) {</span>
+                    <span class="s0">pila2</span><span class="s2">.</span><span class="s0">push</span><span class="s2">(</span><span class="s0">pila1</span><span class="s2">.</span><span class="s0">pop</span><span class="s2">());</span>
+                <span class="s2">}</span>
+            <span class="s2">}</span>
+        <span class="s2">} </span><span class="s1">while </span><span class="s2">(!</span><span class="s0">pila1</span><span class="s2">.</span><span class="s0">pilaLlena</span><span class="s2">());</span>
+        
+        <span class="s4">//Mandamos la pila que estsa lista para stackear a la pila aux</span>
+        <span class="s1">while</span><span class="s2">(!</span><span class="s0">pila2</span><span class="s2">.</span><span class="s0">pilaVacia</span><span class="s2">()){</span>
+            <span class="s0">aux</span><span class="s2">.</span><span class="s0">push</span><span class="s2">(</span><span class="s0">pila2</span><span class="s2">.</span><span class="s0">pop</span><span class="s2">());</span>
+        <span class="s2">}</span>
+        <span class="s4">//pasamos pila 1 a pila 2 para darlo vuelta y lo metemos en pila aux</span>
+        <span class="s1">while</span><span class="s2">(!</span><span class="s0">pila1</span><span class="s2">.</span><span class="s0">pilaVacia</span><span class="s2">()) {</span>
+            <span class="s0">pila2</span><span class="s2">.</span><span class="s0">push</span><span class="s2">(</span><span class="s0">pila1</span><span class="s2">.</span><span class="s0">pop</span><span class="s2">());</span>
+            <span class="s1">if</span><span class="s2">(</span><span class="s0">pila2</span><span class="s2">.</span><span class="s0">pilaLlena</span><span class="s2">()){</span>
+                <span class="s1">while</span><span class="s2">(!</span><span class="s0">pila2</span><span class="s2">.</span><span class="s0">pilaVacia</span><span class="s2">()){</span>
+                    <span class="s0">aux</span><span class="s2">.</span><span class="s0">push</span><span class="s2">(</span><span class="s0">pila2</span><span class="s2">.</span><span class="s0">pop</span><span class="s2">());</span>
+                <span class="s2">}</span>
+            <span class="s2">}</span>
+        <span class="s2">}</span>
+
+        <span class="s1">return </span><span class="s0">aux</span><span class="s2">;</span>
+    <span class="s2">}</span></pre>
+</body>
+</html>

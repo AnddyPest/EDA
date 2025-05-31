@@ -56,8 +56,11 @@ public class Tp4_2 {
         Almacen almacen = new Almacen();
         
         almacen.clasificarPorTipo(productos);
-        
-        
+
+        //System.out.println(almacen.consultaProductoExtraviado("A012"));
+        //almacen.cosultarEspera("Electronicos");
+
+        almacen.cantidadDeProductos("Electronicos");
     }
     
 }
