@@ -169,4 +169,24 @@ public class Pila {
 
         return aux;
     }
-}
+    
+    
+    public void reproBalanceado(Pila pila) {
+    Pila aux1 = new Pila(pila.tam);
+    Pila aux2= new Pila(pila.tam);
+    
+    while(!pila.pilaVacia()) {
+        aux1.push(pila.pop());
+    }
+    
+    while(!pila.pilaLlena()) {
+        pila.push(aux1.pop());
+        while(!aux1.pilaVacia()) {
+            aux2.push(aux1.pop());
+        }
+        pila.push(aux2.pop());
+        while(!aux2.pilaVacia()) {
+            aux1.push(aux2.pop());
+        }
+    }
+}}
