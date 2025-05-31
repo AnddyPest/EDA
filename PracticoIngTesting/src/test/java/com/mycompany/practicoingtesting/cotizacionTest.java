@@ -3,9 +3,9 @@ package com.mycompany.practicoingtesting;
 import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class cotizacionTest {
+public class CotizacionTest {
     
-    public cotizacionTest() {
+    public CotizacionTest() {
     }
     
     @BeforeAll

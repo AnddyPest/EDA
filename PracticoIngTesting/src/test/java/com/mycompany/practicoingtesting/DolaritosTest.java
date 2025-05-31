@@ -1,6 +1,5 @@
 package com.mycompany.practicoingtesting;
 
-import org.junit.jupiter.api.*;
 
 
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -14,9 +13,9 @@ import org.junit.jupiter.api.extension.BeforeEachCallback;
 import java.util.stream.Stream;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-@ExtendWith(dolaritosTest.SimpleLogger.class)
+@ExtendWith(DolaritosTest.SimpleLogger.class)
 
-public class dolaritosTest {
+public class DolaritosTest {
     
     static class SimpleLogger implements BeforeEachCallback {
 
@@ -37,31 +36,18 @@ public class dolaritosTest {
     
     @ParameterizedTest
     @MethodSource("cotizacionProvider")
-    void testCotizarCero(float moneda1, float moneda2, float esperado) {
+    void testCotizarCero(float moneda1, float moneda2, Float esperado) {
+        ConversorMoneda instance = new ConversorMoneda();
+        if (moneda2 == 0f) {
+            Assertions.assertThrows(ArithmeticException.class, () -> {
+                instance.calcularCotizacion(moneda1, moneda2, true);
+            });
+        } else {
+            float resultado = instance.calcularCotizacion(moneda1, moneda2, true);
+            Assertions.assertEquals(esperado, resultado, 0.001);
+        }
         
     }
-    
-    
-    public dolaritosTest() {
         
         
-    }
-    
-    @BeforeAll
-    public static void setUpClass() {
-    }
-    
-    @AfterAll
-    public static void tearDownClass() {
-    }
-    
-    @BeforeEach
-    public void setUp() {
-    }
-    
-    @AfterEach
-    public void tearDown() {
-    }
-
-    
 }
