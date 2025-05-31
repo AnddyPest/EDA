@@ -34,6 +34,9 @@ public class ConversorMoneda {
     }
     
     public float calcularCotizacion(float moneda1, float moneda2, boolean pesoDolar) {
+        if(moneda2 == 0) {
+            throw new ArithmeticException("El divisor no puede ser 0");
+        }
         float resultado = moneda1/moneda2;
         if(pesoDolar) {
             System.out.println("Cotizacion: U$S 1 = AR$ "+resultado);

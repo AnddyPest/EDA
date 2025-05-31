@@ -1,160 +1,102 @@
 package com.mycompany.practicoingtesting;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.*;
 
 public class ConversorMonedaTest {
     
     public ConversorMonedaTest() {
+        
     }
+    
+    private static ConversorMoneda instance;
     
     @BeforeAll
     public static void setUpClass() {
+        instance = new ConversorMoneda();
+        System.out.println("Bienvenido al testing de Conversor de Moneda");
     }
     
     @AfterAll
     public static void tearDownClass() {
+        System.out.println("El testing ha finalizado");
     }
     
+        
     @BeforeEach
-    public void setUp() {
+    public void setUp(TestInfo testName) {
+        System.out.println("Test: " + testName.getDisplayName());
     }
     
     @AfterEach
     public void tearDown() {
+        instance.setMonedaLocal(0.0f);
+        instance.setDivisa(0.0f);
+        System.out.println("Pruebas finalizadas, campos en 0(cero)");
     }
 
-    /**
-     * Test of mostrarBilletera method, of class ConversorMoneda.
-     */
+    
     @Test
-    public void testMostrarBilletera() {
-        System.out.println("mostrarBilletera");
-        ConversorMoneda instance = new ConversorMoneda();
-        String expResult = "";
-        String result = instance.mostrarBilletera();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testCambioPesoADolar() {
+        
+        float resultado = instance.cambio(1000.0f, 500.0f, true); // AR$1000 a U$S, cotización 500
+        assertEquals(2.0f, resultado, 0.001);
+        assertEquals(2.0f, instance.getDivisa(), 0.001);
     }
 
-    /**
-     * Test of cambio method, of class ConversorMoneda.
-     */
     @Test
-    public void testCambio() {
-        System.out.println("cambio");
-        float moneda = 0.0F;
-        float cotizacion = 0.0F;
-        boolean pesoDolar = false;
-        ConversorMoneda instance = new ConversorMoneda();
-        float expResult = 0.0F;
-        float result = instance.cambio(moneda, cotizacion, pesoDolar);
-        assertEquals(expResult, result, 0);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testCambioDolarAPeso() {
+        
+        float resultado = instance.cambio(10.0f, 500.0f, false); // U$S10 a AR$, cotización 500
+        assertEquals(5000.0f, resultado, 0.001);
+        assertEquals(5000.0f, instance.getMonedaLocal(), 0.001);
     }
 
-    /**
-     * Test of calcularCotizacion method, of class ConversorMoneda.
-     */
+    
     @Test
-    public void testCalcularCotizacion() {
-        System.out.println("calcularCotizacion");
-        float moneda1 = 0.0F;
-        float moneda2 = 0.0F;
-        boolean pesoDolar = false;
-        ConversorMoneda instance = new ConversorMoneda();
-        float expResult = 0.0F;
-        float result = instance.calcularCotizacion(moneda1, moneda2, pesoDolar);
-        assertEquals(expResult, result, 0);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testCalcularCotizacionPesoDolar() {
+        
+        float resultado = instance.calcularCotizacion(1000.0f, 500.0f, true);
+        assertEquals(2.0f, resultado, 0.001);
     }
 
-    /**
-     * Test of aumentarSaldos method, of class ConversorMoneda.
-     */
     @Test
-    public void testAumentarSaldos() {
-        System.out.println("aumentarSaldos");
-        boolean pesoDolar = false;
-        float resultado = 0.0F;
-        ConversorMoneda instance = new ConversorMoneda();
-        instance.aumentarSaldos(pesoDolar, resultado);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testCalcularCotizacionDolarPeso() {
+        
+        float resultado = instance.calcularCotizacion(500.0f, 1000.0f, false);
+        assertEquals(0.5f, resultado, 0.001);
     }
 
-    /**
-     * Test of retirarDivisa method, of class ConversorMoneda.
-     */
+    
+    @Test
+    public void testAumentarSaldosPesoDolarTrue() {
+        System.out.println("aumentarSaldos Pesos a dolares");
+        
+        instance.aumentarSaldos(true, 50.0f);
+        assertEquals(50.0f, instance.getDivisa(), 0.001);
+        assertEquals(0.0f, instance.getMonedaLocal(), 0.001);
+    
+    }
+    
+    @Test
+    public void testAumentarSaldosPesoDolarFalse() {
+        
+        
+        instance.aumentarSaldos(false, 100.0f);
+        assertEquals(100.0f, instance.getMonedaLocal(), 0.001);
+        assertEquals(0.0f, instance.getDivisa(), 0.001);
+    }
+
+    
     @Test
     public void testRetirarDivisa() {
-        System.out.println("retirarDivisa");
-        float dolares = 0.0F;
-        ConversorMoneda instance = new ConversorMoneda();
-        instance.retirarDivisa(dolares);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        instance.setDivisa(200.0f);
+        instance.retirarDivisa(50.0f);
+        assertEquals(150.0f, instance.getDivisa(), 0.001);
     }
 
-    /**
-     * Test of getMonedaLocal method, of class ConversorMoneda.
-     */
-    @Test
-    public void testGetMonedaLocal() {
-        System.out.println("getMonedaLocal");
-        ConversorMoneda instance = new ConversorMoneda();
-        float expResult = 0.0F;
-        float result = instance.getMonedaLocal();
-        assertEquals(expResult, result, 0);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getDivisa method, of class ConversorMoneda.
-     */
-    @Test
-    public void testGetDivisa() {
-        System.out.println("getDivisa");
-        ConversorMoneda instance = new ConversorMoneda();
-        float expResult = 0.0F;
-        float result = instance.getDivisa();
-        assertEquals(expResult, result, 0);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setMonedaLocal method, of class ConversorMoneda.
-     */
-    @Test
-    public void testSetMonedaLocal() {
-        System.out.println("setMonedaLocal");
-        float monedaLocal = 0.0F;
-        ConversorMoneda instance = new ConversorMoneda();
-        instance.setMonedaLocal(monedaLocal);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setDivisa method, of class ConversorMoneda.
-     */
-    @Test
-    public void testSetDivisa() {
-        System.out.println("setDivisa");
-        float divisa = 0.0F;
-        ConversorMoneda instance = new ConversorMoneda();
-        instance.setDivisa(divisa);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+    
     
 }
